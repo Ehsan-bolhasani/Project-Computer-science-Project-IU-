@@ -20,3 +20,151 @@ public partial class Home : Page
         }
     }
 }
+
+
+
+
+
+Login.aspx.cs
+
+using System;
+using System.Data.SqlClient;
+
+public partial class Login : System.Web.UI.Page
+{
+    // Database connection string
+    static SqlConnection sqlcon = new SqlConnection(@"Data Source=.;Initial Catalog=my_project;User ID=sa;Password=Ehsan1199");
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        // Page load event
+    }
+
+    protected void btnLogin_Click(object sender, EventArgs e)
+    {
+        // Button click event for login
+        // Check database connection state
+        if (sqlcon.State == System.Data.ConnectionState.Closed)
+        {
+            // Open database connection
+            sqlcon.Open();
+        }
+
+        // Perform login authentication and user session management
+
+        // Close database connection
+        sqlcon.Close();
+    }
+}
+
+
+Product.aspx.cs
+
+
+using System;
+using System.Data;
+using System.Data.SqlClient;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class Product : Page
+{
+    // Database connection
+    SqlConnection sqlcon = new SqlConnection(@"Data Source=.;Initial Catalog=my_project;User ID=sa;Password=Ehsan1199");
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        // Page load event
+    }
+
+    // Other methods and event handlers for Product page
+}
+
+
+
+
+Purches.aspx.cs
+
+
+using System;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Data;
+
+public partial class Purches : Page
+{
+    // Database connection
+    SqlConnection sqlcon = new SqlConnection(@"Data Source=.;Initial Catalog=my_project;User ID=sa;Password=Ehsan1199");
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        // Page load event
+    }
+
+    // Other methods and event handlers for Purches page
+}
+
+
+
+
+Sales.aspx.cs
+
+
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class Sales : Page
+{
+    // Database connection
+    static SqlConnection sqlcon = new SqlConnection(@"Data Source=.;Initial Catalog=my_project;User ID=sa;Password=Ehsan1199");
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        // Page load event
+    }
+
+    // Other methods and event handlers for Sales page
+}
+
+
+
+
+Suppliers.aspx.cs
+
+using System;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Data;
+
+public partial class Suppliers : Page
+{
+    // Database connection
+    SqlConnection sqlcon = new SqlConnection(@"Data Source=.;Initial Catalog=my_project;User ID=sa;Password=Ehsan1199");
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        // Page load event
+    }
+
+    // Other methods and event handlers for Suppliers page
+}
+
+
+
+
+Web.config
+
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <system.web>
+        <!-- Compilation settings -->
+        <compilation debug="false" />
+    </system.web>
+</configuration>
+
