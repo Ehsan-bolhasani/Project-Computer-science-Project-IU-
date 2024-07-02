@@ -1,25 +1,32 @@
 Home.aspx.cs
 
 
-using System;
-using System.Web.UI;
+<%@ Page Title="Home" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Home.aspx.cs" Inherits="Home" %>
 
-public partial class Home : Page
-{
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        // Check if a user session exists
-        if (Session["user"] != null)
-        {
-            return; // Continue with page load
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <style type="text/css">
+        .auto-style41 {
+            width: 100%;
+            height: 500px;
+            margin-right: 0px;
         }
-        else
-        {
-            // Redirect to login page if no user session is found
-            Response.Redirect("Login.aspx");
+        .auto-style43 {
+            width: 100%;
+            height: 500px;
+            text-decoration: none;
+            margin-right: 0px;
         }
-    }
-}
+    </style>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
+    <img alt="inventoryPictures" class="auto-style43" src="Pictures/inventory-management-techniques-1024x579.jpg" />
+</asp:Content>
+
+
+
+
+
+
 
 
 
@@ -27,83 +34,501 @@ public partial class Home : Page
 
 Login.aspx.cs
 
-using System;
-using System.Data.SqlClient;
+<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Login.aspx.cs" Inherits="Login" %>
 
-public partial class Login : System.Web.UI.Page
-{
-    // Database connection string
-    static SqlConnection sqlcon = new SqlConnection(@"Data Source=.;Initial Catalog=my_project;User ID=sa;Password=Ehsan1199");
-
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        // Page load event
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <style type="text/css">
+        .auto-style43 {
+            width: 100%;
+        }
+        .auto-style44 {
+            text-align: center;
+            width:100%;
+        }
+     
+        
+    .auto-style46 {
+        text-align: right;
+        width: 50%;
     }
+        .secclmn {
+            width: 50%;
 
-    protected void btnLogin_Click(object sender, EventArgs e)
-    {
-        // Button click event for login
-        // Check database connection state
-        if (sqlcon.State == System.Data.ConnectionState.Closed)
-        {
-            // Open database connection
-            sqlcon.Open();
+        }
+        .auto-style44 {
+            color: blue;
+        }
+    </style>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <table class="auto-style43">
+        <tr>
+            <td class="auto-style44" colspan="2">
+                <h3><strong>Login</strong></h3>
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style46">User:&nbsp;</td>
+            <td class="secclmn">
+                <asp:TextBox ID="txtUserName" runat="server"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style46">Password:&nbsp;</td>
+            <td class="secclmn">
+                <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style46">
+                <asp:Button ID="btnLogin" runat="server" Font-Bold="True" ForeColor="#006600" Text="Login" Font-Size="Medium" OnClick="btnLogin_Click" />
+            </td>
+            <td class="secclmn">
+                <asp:Button ID="btnRefresh" runat="server" Font-Bold="True" ForeColor="#006600" Text="Refresh" Font-Size="Medium" OnClick="btnRefresh_Click" />&nbsp; &nbsp;
+                <asp:Label ID="lblerror" runat="server" ForeColor="#CC0000"></asp:Label>
+            </td>
+        </tr>
+    </table>
+</asp:Content>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Master Page.master 
+
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="fa">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+            height: 100%;
+            margin-left: 0px;
         }
 
-        // Perform login authentication and user session management
+        .auto-style2 {
+            height: 113px;
+            width: 3%;
+        }
 
-        // Close database connection
-        sqlcon.Close();
+        .auto-style5 {
+            height: 113px;
+            width: 43%;
+            font-size: xx-large;
+            color: #006699;
+        }
+
+        .auto-style28 {
+            height: 113px;
+            width: 6%;
+        }
+
+        .auto-style30 {
+            height: 113px;
+            width: 3px;
+        }
+
+        .auto-style31 {
+            height: 321px;
+        }
+
+        .auto-style33 {
+            height: 44px;
+        }
+
+        .auto-style34 {
+            text-decoration: none;
+            color: #000066;
+        }
+
+        .auto-style36 {
+            height: 113px;
+            width: 6px;
+        }
+
+        .auto-style38 {
+            height: 113px;
+            width: 9px;
+        }
+
+        .auto-style39 {
+            height: 113px;
+            width: 5px;
+        }
+
+        .auto-style41 {
+            text-decoration: none;
+        }
+
+        .auto-style42 {
+            color: #000066;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <table class="auto-style1">
+                <tr>
+                    <td class="auto-style28">&nbsp;</td>
+                    <td class="auto-style5">Inventory Management System</td>
+                    <td class="auto-style36" style="color: #797979; font-weight: bold;"><a class="auto-style34" href="Home.aspx">Home</a></td>
+
+                    <td class="auto-style38" style="color: #797979; font-weight: bold;"><a class="auto-style41" href="Purchase.aspx"><span class="auto-style42">Purchase</span></a></td>
+                    <td class="auto-style39" style="color: #797979; font-weight: bold;"><a class="auto-style41" href="Sales.aspx"><span class="auto-style42">Sales</span></a></td>
+                    <td class="auto-style39" style="color: #797979; font-weight: bold;"><a class="auto-style41" href="Product.aspx"><span class="auto-style42">Products</span></a></td>
+
+                    <td class="auto-style39" style="color: #797979; font-weight: bold;"><a class="auto-style41" href="Supplier.aspx"><span class="auto-style42">Suppliers</span></a></td>
+
+                    <td class="auto-style30" style="color: #797979; font-weight: bold;">
+
+                        <asp:Label ID="lblusername" runat="server" Font-Bold="True" ForeColor="#006600"></asp:Label>
+
+                        &nbsp;
+                   
+                    <asp:Button ID="btnLogOut" runat="server" href="Login.aspx" Font-Bold="True" ForeColor="#990000" Text="Logout" OnClick="btnLogOut_Click" />
+
+                    </td>
+                    <td class="auto-style2">&nbsp;</td>
+                </tr>
+                <tr>
+                    <td class="auto-style31" colspan="9" style="background-color: #FFFFFF">
+                        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="auto-style33" colspan="9" style="background-color: #006699; color: #FFFFFF" aria-orientation="horizontal">Copyright</td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+Master Page.master.cs
+
+
+
+using System;
+
+public partial class MasterPage : System.Web.UI.MasterPage
+{
+    //public bool isloggedin { get; set; }
+    //public string username { get { return lblusername.innertext; } set { lblusername.innertext = value; } }
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (Session["user"] != null)
+        {
+            lblusername.Text = Session["user"].ToString();
+        }
+        else
+        {
+            btnLogOut.Visible = false;
+        }
+    }
+
+    protected void btnLogOut_Click(object sender, EventArgs e)
+    {
+        Session.Abandon();
+        Response.Redirect("Login.aspx");
     }
 }
+
+
+
+
+
+
+
+
+
+
+Packages.config
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<packages>
+  <package id="AjaxControlToolkit" version="18.1.0" targetFramework="net461" />
+  <package id="Microsoft.CodeDom.Providers.DotNetCompilerPlatform" version="1.0.7" targetFramework="net461" />
+  <package id="Microsoft.Net.Compilers" version="2.1.0" targetFramework="net461" developmentDependency="true" />
+  <package id="NUnit" version="3.10.1" targetFramework="net461" />
+  <package id="NUnit3TestAdapter" version="3.10.0" targetFramework="net461" />
+</packages>
+
+
+
+
+
+
+
+
+
 
 
 Product.aspx.cs
 
 
-using System;
-using System.Data;
-using System.Data.SqlClient;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+<%@ Page Title="Product" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Product.aspx.cs" Inherits="Product" %>
 
-public partial class Product : Page
-{
-    // Database connection
-    SqlConnection sqlcon = new SqlConnection(@"Data Source=.;Initial Catalog=my_project;User ID=sa;Password=Ehsan1199");
-
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        // Page load event
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <style type="text/css">
+    .auto-style41 {
+        text-align: center;
     }
+    .auto-style42 {
+        width: 100%;
+    }
+    .auto-style43 {
+            text-align: right;
+            width: 608px;
+        }
+    .auto-style44 {
+        text-align: left;
+    }
+        .auto-style46 {
+        text-align: right;
+        width: 571px;
+    }
+    .auto-style49 {
+        text-align: center;
+        width: 8px;
+    }
+    .auto-style50 {
+        text-align: center;
+        width: 73px;
+    }
+        .auto-style51 {
+            text-align: center;
+        }
+        .auto-style52 {
+            color: #003399;
+        }
+    </style>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <div class="auto-style41">
+    <h3 class="auto-style52">Product Registration</h3>
+        <asp:HiddenField ID="hfProductId" runat="server" />
+    <table class="auto-style42">
+        <tr>
+            <td class="auto-style43" colspan="2">Product Name:</td>
+            <td class="auto-style44" colspan="2">
+                <asp:TextBox ID="txtproname" runat="server" Width="128px"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style43" colspan="2">Product Description:</td>
+            <td class="auto-style44" colspan="2">
+                <asp:TextBox ID="txtprodes" runat="server" TextMode="MultiLine" MaxLength="99" Width="128px"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style46">
+                <asp:Button ID="btnsave" runat="server" Text="Save" Font-Bold="True" OnClick="btnsave_Click" Width="55px" />
+            </td>
+            <td class="auto-style49">
+                <asp:Button ID="btndelete" runat="server" Text="Delete" Width="56px" Font-Bold="True" OnClick="btndelete_Click" />
+            </td>
+            <td class="auto-style50">
+                <asp:Button ID="btnclear" runat="server" Text="Clear" Font-Bold="True" OnClick="btnclear_Click" />
+            </td>
+            <td class="auto-style44">
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <asp:Label ID="lblsuccessmassage" runat="server" Text="" ForeColor="Green"></asp:Label>
+                <asp:Label ID="lblerrormessage" runat="server" Text="" ForeColor="Red"></asp:Label>
+            </td>
+        </tr>
+    </table>
+        <h4>
+            <br />
+            <span class="auto-style52">Product List</span><br />
+        <br />
+        </h4>
+        <div class="auto-style51">
+        <asp:GridView ID="productGrid" runat="server" AutoGenerateColumns="false" HorizontalAlign="Center">
+            <columns>
+                <asp:BoundField Datafield="ProductId" HeaderText="Product Id" />
+                <asp:BoundField Datafield="ProductName" HeaderText="Product Name" />
+                <asp:BoundField DataField="ProductDescription" HeaderText="Product Description" />
+                <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lnkView" runat="server" CommandArgument='<%# Eval("ProductId") %>' OnClick="lnk_onClick">Select</asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </columns>
+        </asp:GridView>
+            <br />
+        </div>
+</div>
+</asp:Content>
 
-    // Other methods and event handlers for Product page
-}
+
+
+
+
+
+
+
 
 
 
 
 Purches.aspx.cs
 
+<%@ Page Title="Purchase" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Purchase.aspx.cs" Inherits="Store" %>
 
-using System;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Data.SqlClient;
-using System.Data;
-
-public partial class Purches : Page
-{
-    // Database connection
-    SqlConnection sqlcon = new SqlConnection(@"Data Source=.;Initial Catalog=my_project;User ID=sa;Password=Ehsan1199");
-
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        // Page load event
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+       <style type="text/css">
+    .auto-style41 {
+        text-align: center;
     }
+    .auto-style42 {
+        width: 100%;
+    }
+    .auto-style43 {
+            text-align: right;
+            width: 608px;
+        }
+    .auto-style44 {
+        text-align: left;
+    }
+        .auto-style46 {
+        text-align: right;
+        width: 571px;
+    }
+    .auto-style49 {
+        text-align: center;
+        width: 11px;
+    }
+    .auto-style50 {
+        text-align: center;
+        width: 73px;
+    }
+        .auto-style51 {
+            text-align: center;
+        }
+        .auto-style52 {
+            color: #003399;
+        }
+           .auto-style53 {
+               margin-left: 0px;
+           }
+    </style>
+</asp:Content>
 
-    // Other methods and event handlers for Purches page
-}
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+     <div class="auto-style41">
+    <h3 class="auto-style52">Purchase</h3>
+        <asp:HiddenField ID="hfPurchaseId" runat="server" />
+    <table class="auto-style42">
+        <tr>
+            <td class="auto-style43" colspan="2">Product Name:</td>
+            <td class="auto-style44" colspan="2">
+                <asp:DropDownList ID="DropDownProduct" runat="server" Height="26px" Width="128px" AppendDataBoundItems="True">
+                    
+                </asp:DropDownList>
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style43" colspan="2">Supplier Name :</td>
+            <td class="auto-style44" colspan="2">
+                <asp:DropDownList ID="DropDownSupplier" runat="server" Height="26px" Width="128px" AppendDataBoundItems="True">
+                    
+                </asp:DropDownList>
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style43" colspan="2">Quantity (Packet):</td>
+            <td class="auto-style44" colspan="2">
+                <asp:TextBox ID="txtQuantity" runat="server" Width="128px" onkeydown="return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style43" colspan="2">Others :</td>
+            <td class="auto-style44" colspan="2">
+                <asp:TextBox ID="txtOthers" runat="server" TextMode="MultiLine" MaxLength="99" Width="128px"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style46">
+                <asp:Button ID="btnsave" runat="server" Text="Save" Font-Bold="True" OnClick="btnsave_Click" Width="55px" />
+            </td>
+            <td class="auto-style49">
+                <asp:Button ID="btndelete" runat="server" Text="Delete" Width="56px" Font-Bold="True" OnClick="btndelete_Click" CssClass="auto-style53" />
+            </td>
+            <td class="auto-style50">
+                <asp:Button ID="btnclear" runat="server" Text="Clear" Font-Bold="True" OnClick="btnclear_Click" Width="56px" />
+            </td>
+            <td class="auto-style44">
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <asp:Label ID="lblsuccessmassage" runat="server" Text="" ForeColor="Green"></asp:Label>
+                <asp:Label ID="lblerrormessage" runat="server" Text="" ForeColor="Red"></asp:Label>
+            </td>
+        </tr>
+    </table>
+        <h4>
+            <br />
+            <span class="auto-style52">Purchase List</span><br />
+        <br />
+        </h4>
+        <div class="auto-style51">
+        <asp:GridView ID="purchaseGrid" runat="server" AutoGenerateColumns="false" HorizontalAlign="Center">
+            <columns>
+                <asp:BoundField Datafield="PurchaseId" HeaderText="Purchase Id" />
+                <asp:BoundField Datafield="ProductName" HeaderText="Product Name" />
+                <asp:BoundField Datafield="CompanyName" HeaderText="Supplier Name" />
+                <asp:BoundField Datafield="Quantity" HeaderText="Quantity" />
+                <asp:BoundField DataField="Others" HeaderText="Others" />
+                <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lnkView" runat="server" CommandArgument='<%# Eval("PurchaseId") %>' OnClick="lnk_onClick">Select</asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </columns>
+        </asp:GridView>
+            <br />
+        </div>
+</div>
+</asp:Content>
+
+
+
+
 
 
 
@@ -111,60 +536,361 @@ public partial class Purches : Page
 Sales.aspx.cs
 
 
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Web.UI;
-using System.Web.UI.WebControls;
+<%@ Page Title="Sales" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Sales.aspx.cs" Inherits="Sales" %>
 
-public partial class Sales : Page
-{
-    // Database connection
-    static SqlConnection sqlcon = new SqlConnection(@"Data Source=.;Initial Catalog=my_project;User ID=sa;Password=Ehsan1199");
+<%@ Register assembly="AjaxControlToolkit" namespace="AjaxControlToolkit" tagprefix="ajaxToolkit" %>
 
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        // Page load event
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    
+    <style type="text/css">
+    .auto-style41 {
+        text-align: center;
     }
+    .auto-style42 {
+        width: 100%;
+    }
+    .auto-style44 {
+        text-align: left;
+    }
+        .auto-style51 {
+            text-align: center;
+        }
+           .auto-style54 {
+            text-align: left;
+            text-decoration: none;
+        }
+        .auto-style55 {
+            color: #003399;
+            text-align: center;
+        }
+        .auto-style56 {
+            width: 100%;
+            height: 140px;
+        }
+        .auto-style59 {
+            width: 65%;
+        }
+         .auto-style77 {
+            width: 5%;
+        }
+           .auto-style79 {
+            width: 5%;
+        }
+          .auto-style78 {
+            height: 30px;
+        }
+        
+        .auto-style60 {
+            width: 173px;
+            text-align: center;
+        }
+        .auto-style65 {
+            width: 10%;
+            height: 30px;
+        }
+        .auto-style68 {
+            width: 173px;
+            color: #0033CC;
+            height: 26px;
+            text-align: right;
+        }
+        .auto-style69 {
+            width: 28px;
+            height: 30px;
+        }
+        .auto-style71 {
+            color: #0033CC;
+            text-align: center;
+        }
+        .auto-style72 {
+            width: 65%;
+            height: 26px;
+            text-align: center;
+            color: #003399;
+        }
+        .auto-style73 {
+            width: 15%;
+            color: #0033CC;
+            text-align: right;
+        }
+        .auto-style74 {
+            color: #0033CC;
+            text-align: right;
+        }
+    </style>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <asp:ScriptManager runat="server"></asp:ScriptManager>
+   <div class="auto-style54">
+    <h3 class="auto-style55">Sales</h3>
+       <div class="auto-style44">
+           
+           <table class="auto-style56">
+               <tr>
+                   <td class="auto-style78">&nbsp;</td>
+                   <td class="auto-style65">
+                       &nbsp;</td>
+                   <td class="auto-style65">
+                       &nbsp;</td>
+                   <td class="auto-style72" colspan="2"><strong>Search Result</strong></td>
+                   <td class="auto-style79">
+                       &nbsp;</td>
+               </tr>
+               <tr>
+                   <td class="auto-style74">
+                       Search Product Name:</td>
+                   <td class="auto-style71">
+                <asp:TextBox ID="TextBox2" Width="128px" runat="server" OnTextChanged="TextBox2_TextChanged" AutoPostBack="True"></asp:TextBox>
+                       <ajaxToolkit:AutoCompleteExtender ID="TextBox2_AutoCompleteExtender" runat="server" MinimumPrefixLength="1" ServiceMethod="GetSearch" TargetControlID="TextBox2">
+                       </ajaxToolkit:AutoCompleteExtender>
+                   </td>
+                   <td class="auto-style77" rowspan="7">&nbsp;
+                        
+                   </td>
+                   <td class="auto-style59" rowspan="7" style="border:thin solid #003300">
+            <asp:GridView ID="searchGrid" runat="server" AutoGenerateColumns="False" AutoPostBack="true" HorizontalAlign="Center" OnSelectedIndexChanged="searchGrid_SelectedIndexChanged">
+                <columns>
+                    <asp:BoundField Datafield="ProductName" HeaderText="Product Name" />
+                    <asp:BoundField Datafield="CompanyName" HeaderText="Company Name" />
+                    <asp:BoundField Datafield="total" HeaderText="Available Quantity" />
+                    <asp:TemplateField>
+                      
+                    </asp:TemplateField>
+                   
+                    <asp:ButtonField CommandName="Select" Text="select" />
+                   
+                </columns>
+            </asp:GridView>
+                   </td>
+                   <td class="auto-style79" rowspan="7">
+                       &nbsp;</td>
+               </tr>
+               <tr>
+                   <td class="auto-style73">Company Name :</td>
+                   <td class="auto-style65">
+                <asp:TextBox ID="TextBox3" Width="128px" runat="server" AutoPostBack="True"></asp:TextBox>
+                   </td>
+               </tr>
+               <tr>
+                   <td class="auto-style68">Available Quantity (Packet)</td>
+                   <td class="auto-style69">
+                <asp:TextBox ID="txtQuantity1" runat="server" Width="128px" onkeydown="return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
+                   </td>
+               </tr>
+               <tr>
+                   <td class="auto-style73">Sell Quantity (Packet) :</td>
+                   <td class="auto-style65">
+                <asp:TextBox ID="txtQuantity2" runat="server" Width="128px" onkeydown="return (!(event.keyCode>=65) && event.keyCode!=32);"></asp:TextBox>
+                   </td>
+               </tr>
+               <tr>
+                   <td class="auto-style51" colspan="2">
+                       <asp:Button ID="btnsell" runat="server" Text="Sell" Font-Bold="True" Width="55px" OnClick="btnsell_Click" />
+                       <asp:Button ID="btnclear" runat="server" Text="Clear" Font-Bold="True" OnClick="btnclear_Click" Width="56px" />
+                   </td>
+               </tr>
+               <tr>
+                   <td class="auto-style60" colspan="2" rowspan="2">
+                <asp:Label ID="lblsuccessmassage" runat="server" Text="" ForeColor="Green"></asp:Label>
+                       <br />
+                <asp:Label ID="lblerrormessage" runat="server" Text="" ForeColor="Red"></asp:Label>
+                   </td>
+                  
+               </tr>
+              
+           </table>
+       </div>
+    <table class="auto-style42">
+        <tr>
+            <td class="auto-style44">
+                &nbsp;</td>
+        </tr>
+    </table>
+        <h4 class="auto-style51">
+            <br />
+        </h4>
+       <p class="auto-style51">
+            
+        <asp:GridView ID="SalesGrid" runat="server" AutoGenerateColumns="False" AutoPostBack="true" HorizontalAlign="Center" OnSelectedIndexChanged="searchGrid_SelectedIndexChanged">
+                <columns>
+                    <asp:BoundField Datafield="SalesProductName" HeaderText="Product Name" />
+                    <asp:BoundField Datafield="SalesCompanyName" HeaderText="Company Name" />
+                    <asp:BoundField Datafield="SalesQuantity" HeaderText="Quantity (Packet)" />
+                                       
+                   <%-- <asp:ButtonField CommandName="Select" Text="select" />--%>
+                   
+                </columns>
+            </asp:GridView>
+           </p>
+        <div class="auto-style51">
+            <br />
+        </div>
+</div>
+</asp:Content>
 
-    // Other methods and event handlers for Sales page
-}
+
+
+
+
+
+
+
 
 
 
 
 Suppliers.aspx.cs
 
-using System;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Data.SqlClient;
-using System.Data;
+@ Page Title="Supplier" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Supplier.aspx.cs" Inherits="Supplier" %>
 
-public partial class Suppliers : Page
-{
-    // Database connection
-    SqlConnection sqlcon = new SqlConnection(@"Data Source=.;Initial Catalog=my_project;User ID=sa;Password=Ehsan1199");
-
-    protected void Page_Load(object sender, EventArgs e)
-    {
-        // Page load event
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
+    <style type="text/css">
+    .auto-style41 {
+        text-align: center;
     }
+    .auto-style42 {
+        width: 100%;
+    }
+    .auto-style43 {
+            text-align: right;
+            width: 608px;
+        }
+    .auto-style44 {
+        text-align: left;
+    }
+        .auto-style46 {
+        text-align: right;
+        width: 571px;
+    }
+    .auto-style49 {
+        text-align: center;
+        width: 8px;
+    }
+    .auto-style50 {
+        text-align: center;
+        width: 73px;
+    }
+        .auto-style51 {
+            text-align: center;
+        }
+        .auto-style52 {
+            color: #003399;
+        }
+    </style>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+     <div class="auto-style41">
+    <h3 class="auto-style52">Supplier Registration</h3>
+        <asp:HiddenField ID="hfSupplierId" runat="server" />
+    <table class="auto-style42">
+        <tr>
+            <td class="auto-style43" colspan="2" dir="ltr">Company Name:</td>
+            <td class="auto-style44" colspan="2">
+                <asp:TextBox ID="txtComName" runat="server" Width="128px"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style43" colspan="2" dir="ltr">Trade Licence No :</td>
+            <td class="auto-style44" colspan="2">
+                <asp:TextBox ID="txtTradeLiNo" runat="server" Width="128px"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style43" colspan="2" dir="ltr">Mobile Number:</td>
+            <td class="auto-style44" colspan="2">
+                <asp:TextBox ID="txtMobileNo" runat="server" Width="128px" MaxLength="11"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style43" colspan="2" dir="ltr">Address:</td>
+            <td class="auto-style44" colspan="2">
+                <asp:TextBox ID="txtAddress" runat="server" TextMode="MultiLine" MaxLength="99" Width="128px"></asp:TextBox>
+            </td>
+        </tr>
+        <tr>
+            <td class="auto-style46">
+                <asp:Button ID="btnsave" runat="server" Text="Save" Font-Bold="True" Width="55px" OnClick="btnsave_Click" />
+            </td>
+            <td class="auto-style49">
+                <asp:Button ID="btndelete" runat="server" Text="Delete" Width="56px" Font-Bold="True" OnClick="btndelete_Click" />
+            </td>
+            <td class="auto-style50">
+                <asp:Button ID="btnclear" runat="server" Text="Clear" Font-Bold="True" OnClick="btnclear_Click" />
+            </td>
+            <td class="auto-style44">
+                &nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <asp:Label ID="lblsuccessmassage" runat="server" Text="" ForeColor="Green"></asp:Label>
+                <asp:Label ID="lblerrormessage" runat="server" Text="" ForeColor="Red"></asp:Label>
+            </td>
+        </tr>
+    </table>
+        <h4>
+            <br />
+            <span class="auto-style52">Supplier List</span><br />
+        <br />
+        </h4>
+        <div class="auto-style51">
+        <asp:GridView ID="supplierGrid" runat="server" AutoGenerateColumns="false" HorizontalAlign="Center">
+            <columns>
+                <asp:BoundField Datafield="SupplierId" HeaderText="Supplier Id" />
+                <asp:BoundField Datafield="CompanyName" HeaderText="Company Name" />
+                <asp:BoundField Datafield="TradeNo" HeaderText="Trade Licence No" />
+                <asp:BoundField Datafield="MobileNo" HeaderText="Mobile Number" />
+                <asp:BoundField DataField="Address" HeaderText="Address" />
+                <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lnkView" runat="server" CommandArgument='<%# Eval("SupplierId") %>' OnClick="lnk_onClick">Select</asp:LinkButton>
+                    </ItemTemplate>
+                </asp:TemplateField>
+            </columns>
+        </asp:GridView>
+            <br />
+        </div>
+</div>
+</asp:Content>
 
-    // Other methods and event handlers for Suppliers page
-}
+
+
+
+
 
 
 
 
 Web.config
 
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"?>
+<!--
+  For more information on how to configure your ASP.NET application, please visit
+  https://go.microsoft.com/fwlink/?LinkId=169433
+  -->
 <configuration>
-    <system.web>
-        <!-- Compilation settings -->
-        <compilation debug="false" />
-    </system.web>
-</configuration>
+  <connectionStrings>
+    <add name="InventoryManagementConnection" connectionString="Data Source=.;Initial Catalog=my_project;User ID=sa;Password=Ehsan1199;Trusted_Connection=True;MultipleActiveResultSets=true"/>
+  </connectionStrings>
+  <!--
+    For a description of web.config changes see http://go.microsoft.com/fwlink/?LinkId=235367.
 
+    The following attributes can be set on the <httpRuntime> tag.
+      <system.Web>
+        <httpRuntime targetFramework="4.8" />
+      </system.Web>
+  -->
+  <system.web>
+    <compilation debug="true" targetFramework="4.8"/>
+    <httpRuntime targetFramework="4.6.1"/>
+    <pages>
+      <controls>
+        <add tagPrefix="ajaxToolkit" assembly="AjaxControlToolkit" namespace="AjaxControlToolkit"/>
+      </controls>
+    </pages>
+  </system.web>
+  <system.codedom>
+    <compilers>
+      <compiler language="c#;cs;csharp" extension=".cs" type="Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider, Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" warningLevel="4" compilerOptions="/langversion:default /nowarn:1659;1699;1701"/>
+    </compilers>
+  </system.codedom>
+</configuration>
